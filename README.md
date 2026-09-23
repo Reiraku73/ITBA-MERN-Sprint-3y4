@@ -23,15 +23,35 @@ E-commerce artesanal desarrollado como proyecto de Full Stack Developer.
 
 ## Estructura
 
-- `client/`: aplicación React.
-- `server/`: API REST con Express.
-- `client/src/types/`: contratos de datos del frontend.
-- `client/src/services/`: comunicación con la API.
-- `client/src/context/`: estado global mediante Context API.
-- `server/src/models/`: modelos Mongoose.
-- `server/src/controllers/`: lógica de entrada de las solicitudes.
-- `server/src/routes/`: endpoints de la API.
-- `server/src/middleware/`: autenticación, validación y errores.
+|-- ITBA-MERN-Sprint-3y4/
+    |-- client/
+    |   |-- public/
+    |   |   |-- images/
+    |   |       |-- branding/
+    |   |       |-- productos/
+    |   |       |-- relacionadas/
+    |   |-- src/
+    |       |-- components/
+    |       |   |-- auth/
+    |       |   |-- cart/
+    |       |   |-- home/
+    |       |   |-- layout/
+    |       |   |-- products/
+    |       |   |-- ui/
+    |       |-- context/
+    |       |-- hooks/
+    |       |-- pages/
+    |       |-- services/
+    |       |-- styles/
+    |       |-- types/
+    |       |-- utils/
+    |-- server/
+        |-- src/
+            |-- config/
+            |-- controllers/
+            |-- middleware/
+            |-- models/
+            |-- routes/
 
 ## Desarrollo
 
