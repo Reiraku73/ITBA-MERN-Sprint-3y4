@@ -23,6 +23,7 @@ E-commerce artesanal desarrollado como proyecto de Full Stack Developer.
 
 ## Estructura
 
+```text
 |-- ITBA-MERN-Sprint-3y4/
     |-- client/
     |   |-- public/
@@ -52,7 +53,7 @@ E-commerce artesanal desarrollado como proyecto de Full Stack Developer.
             |-- middleware/
             |-- models/
             |-- routes/
-
+```
 ## Desarrollo
 
 El frontend y backend se ejecutan como proyectos independientes.
