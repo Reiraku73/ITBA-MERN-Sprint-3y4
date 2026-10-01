@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 
 export default function HeroCarousel() {
   const [slidesArray, setSlidesArray] = useState([])
@@ -57,9 +57,9 @@ export default function HeroCarousel() {
             Diseño artesanal en madera maciza, pensado para acompañar tu casa
             por generaciones.
           </p>
-          <a href="Productos.html" className="btn btn--primary hero__cta">
+          <Link to="/productos" className="btn btn--primary hero__cta">
             Ver colección
-          </a>
+          </Link>
         </div>
 
         <div className="hero__media">
@@ -73,22 +73,21 @@ export default function HeroCarousel() {
             <div className="hero__carousel" id="hero-carousel">
               {(() => {
                 const slideActual = slidesArray[slide]
-                
-                return <a
-                  key={slideActual.id}
-                  //El preventDefault es temporal, para que al clickear por error no recargue completamente al hacer click
-                  onClick={(e) => e.preventDefault()}
-                  className="hero__carousel-slide"
-                  href={`Producto.html?id=${slideActual.id}`}
-                  style={{'--slide-duration' : `${SLIDE_DURATION}ms`}
-                }
-                >
-                  <img
-                    className="hero__carousel-img"
-                    src={`${slideActual.imagen}`}
-                    alt={`${slideActual.nombre}, pieza destacada de Hermanos Jota`}
-                  />
-                </a>
+
+                return (
+                  <Link
+                    key={slideActual.id}
+                    className="hero__carousel-slide"
+                    to={`/producto/${slideActual.id}`}
+                    style={{ '--slide-duration': `${SLIDE_DURATION}ms` }}
+                  >
+                    <img
+                      className="hero__carousel-img"
+                      src={`${slideActual.imagen}`}
+                      alt={`${slideActual.nombre}, pieza destacada de Hermanos Jota`}
+                    />
+                  </Link>
+                )
               })()}
             </div>
           )}
