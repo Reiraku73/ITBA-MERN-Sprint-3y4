@@ -1,18 +1,33 @@
-import { useState } from "react"
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-export default function MobileMenu({isOpen, onClose}) {
-
-
+export default function MobileMenu({ isOpen, onClose }) {
     return (
         <>
             <nav className="header__nav">
                 <ul id="primary-menu" className={isOpen ? "nav__list is-open" : "nav__list"}>
-                    <li><a onClick={onClose} href="Home.html">Inicio</a></li>
-                    <li><a onClick={onClose} href="Productos.html">Productos</a></li>
-                    <li><a onClick={onClose} href="Home.html#historia">Nosotros</a></li>
-                    <li><a onClick={onClose} href="Contacto.html">Contacto</a></li>
+                    <li>
+                        <NavLink onClick={onClose} to="/">
+                            Inicio
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink onClick={onClose} to="/productos">
+                            Productos
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink onClick={onClose} to="/#historia">
+                            Nosotros
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink onClick={onClose} to="/contacto">
+                            Contacto
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
         </>
-    )
+    );
 }

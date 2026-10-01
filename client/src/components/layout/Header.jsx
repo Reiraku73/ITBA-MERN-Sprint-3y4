@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import MobileMenu from './MobileMenu';
 
 
@@ -26,7 +27,7 @@ export default function Header({ cantidadCarrito = 0 }) {
   return (
     <header className="site-header">
       <div className="header__logo">
-        <a href="Home.html" className="header__logo-link">
+        <NavLink to="/" className="header__logo-link">
           <img
             src="/images/branding/isotipo.png"
             alt=""
@@ -34,10 +35,11 @@ export default function Header({ cantidadCarrito = 0 }) {
             height="41"
           />
           <span className="header__wordmark">Hermanos Jota</span>
-        </a>
+        </NavLink>
       </div>
 
       <MobileMenu isOpen={state} onClose={handleNavigate} />
+
       <form className="header__search" role="search" onSubmit={handleSubmit}>
         <label htmlFor="search-input" className="visually-hidden">Buscar productos</label>
         <input
@@ -51,6 +53,7 @@ export default function Header({ cantidadCarrito = 0 }) {
           <img src="images/icons/search.svg" alt="" width="20" height="20" />
         </button>
       </form>
+
       <div className="header__actions">
         <button
           type="button"
@@ -63,14 +66,14 @@ export default function Header({ cantidadCarrito = 0 }) {
           <span aria-hidden="true" >☰</span>
         </button>
 
-        <a href="Cuenta.html" className="header__icon-link">
+        <NavLink to="/cuenta" className="header__icon-link">
           <img src="images/icons/user.svg" alt="" width="24" height="24" />
-        </a>
+        </NavLink>
 
-        <a href="Carrito.html" className="header__icon-link header__cart">
+        <NavLink to="/carrito" className="header__icon-link header__cart">
           <img src="images/icons/cart.svg" alt="" width="24" height="24" />
           <span className="cart-count">{cantidadCarrito}</span>
-        </a>
+        </NavLink>
       </div>
     </header>
   );
