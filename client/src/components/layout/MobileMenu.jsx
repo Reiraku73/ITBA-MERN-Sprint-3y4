@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 export default function MobileMenu({ isOpen, onClose }) {
     return (
@@ -17,9 +16,9 @@ export default function MobileMenu({ isOpen, onClose }) {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink onClick={onClose} to="/#historia">
+                        <Link onClick={onClose} to="/#historia">
                             Nosotros
-                        </NavLink>
+                        </Link>
                     </li>
                     <li>
                         <NavLink onClick={onClose} to="/contacto">
