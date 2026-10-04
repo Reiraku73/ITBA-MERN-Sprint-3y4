@@ -4,7 +4,9 @@ import { Home } from "./pages/Home.jsx"
 import NotFound from './pages/NotFound.jsx';
 import Footer from './components/layout/Footer.jsx'
 import {Productos} from "./pages/Productos.jsx"
-
+import Contacto from "./pages/Contacto.jsx"
+import Terminos from "./pages/Terminos.jsx"
+import Privacidad from "./pages/Privacidad.jsx"
 
 function App() {
     return (
@@ -12,6 +14,9 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/contacto" element={<Contacto/>}/>
+                <Route path="/terminos" element={<Terminos/>}/>
+                <Route path="/privacidad" element={<Privacidad/>}/> 
                 <Route path="/productos" element={<Productos/>}/>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
