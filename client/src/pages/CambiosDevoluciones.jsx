@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 function CambiosDevoluciones() {
     return (
         <>
-            <section class="legal-hero" aria-labelledby="cambios-title">
+            <section className="legal-hero" aria-labelledby="cambios-title">
                 <h1 id="cambios-title">Cambios y devoluciones</h1>
                 <p>Última actualización: Octubre de 2026</p>
             </section>
 
-            <section class="legal-content">
+            <section className="legal-content">
 
                 <article>
                     <h2>1. Plazo para solicitar un cambio o devolución</h2>
