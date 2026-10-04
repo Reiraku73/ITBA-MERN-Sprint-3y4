@@ -1,70 +1,29 @@
-import { useState, useEffect } from 'react';
+import { getProductos, getProductoById } from '../services/productService';
+import { getErrorMessage } from '../services/api';
+import { useApiQuery } from './useApiQuery';
 
+// Hooks de conveniencia sobre useApiQuery: pasan por el cliente HTTP único
+// (services/api.js), así la URL base, el timeout y los mensajes de error
+// salen de un solo lugar. Devuelven `error` como texto listo para mostrar.
 
-const API_URL = 'http://localhost:3001/api/productos';
-
-// Hook para traer TODOS los productos
+// Todos los productos.
 export function useProductos() {
-  const [productos, setProductos] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchProductos = async () => {
-    try {
-      setCargando(true);
-      setError(null);
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error('Error al cargar el catálogo');
-      
-      const data = await res.json();
-      setProductos(data);
-    } catch (err) {
-      setError(err.message);
-      console.error(err);
-    } finally {
-      setCargando(false);
-    }
+  const { data, loading, error, reload } = useApiQuery((signal) => getProductos({ signal }), []);
+  return {
+    productos: data ?? [],
+    cargando: loading,
+    error: error ? getErrorMessage(error) : null,
+    reintentar: reload,
   };
-
-  useEffect(() => {
-    fetchProductos();
-  }, []);
-
-  return { productos, cargando, error, reintentar: fetchProductos };
 }
 
-// Hook 2 para traer un solo producto
+// Un solo producto.
 export function useProducto(id) {
-  const [producto, setProducto] = useState(null);
-  const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchProducto = async () => {
-    if (!id) return;
-    try {
-      setCargando(true);
-      setError(null);
-      const res = await fetch(`${API_URL}/${id}`);
-      
-      const json = await res.json();
-      
-      // { data: producto, error: null o mensaje }
-      if (!res.ok || json.error) {
-        throw new Error(json.error?.message || 'Error al cargar el producto');
-      }
-      
-      setProducto(json.data); 
-    } catch (err) {
-      setError(err.message);
-      console.error(err);
-    } finally {
-      setCargando(false);
-    }
+  const { data, loading, error, reload } = useApiQuery((signal) => getProductoById(id, { signal }), [id]);
+  return {
+    producto: data,
+    cargando: loading,
+    error: error ? getErrorMessage(error) : null,
+    reintentar: reload,
   };
-
-  useEffect(() => {
-    fetchProducto();
-  }, [id]);
-
-  return { producto, cargando, error, reintentar: fetchProducto };
 }

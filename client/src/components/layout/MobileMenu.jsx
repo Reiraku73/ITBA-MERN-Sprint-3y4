@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 export default function MobileMenu({ isOpen, onClose }) {

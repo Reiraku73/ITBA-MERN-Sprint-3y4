@@ -57,7 +57,7 @@ export default function HeroCarousel() {
                   <Link
                     key={slideActual.id}
                     className="hero__carousel-slide"
-                    to={`/producto/${slideActual.id}`}
+                    to={`/productos/${slideActual.id}`}
                     style={{ '--slide-duration': `${SLIDE_DURATION}ms` }}
                   >
                     <img
