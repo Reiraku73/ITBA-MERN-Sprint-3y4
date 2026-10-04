@@ -121,7 +121,7 @@ server/
 
 | Componente             | Ubicación                 | Descripción                                                   |
 | ---------------------- | ------------------------- | ------------------------------------------------------------- |
-| `Header`               | `components/layout/`      | Logo, buscador, accesos a cuenta y carrito con contador       |
+| `Navbar`               | `components/layout/`      | Logo, buscador, accesos a cuenta y carrito con contador       |
 | `MobileMenu`           | `components/layout/`      | Navegación principal, con apertura en mobile                  |
 | `Footer`               | `components/layout/`      | Navegación, información legal, contacto y redes               |
 | `HeroCarousel`         | `components/home/`        | Carrusel de productos destacados con estados de carga y error |
@@ -135,7 +135,7 @@ server/
 
 * **Catálogo dinámico:** `fetch` a `GET /api/productos`, con estados de **carga** y **error**.
 * **Detalle de producto:** se muestra con renderizado condicional al seleccionar un producto.
-* **Carrito de compras:** el estado vive en `App.jsx` y la cantidad llega al contador del Header por props.
+* **Carrito de compras:** el estado vive en `App.jsx` y la cantidad llega al contador del Navbar por props.
 * **Formulario de contacto controlado:** cada campo está vinculado a un estado con `useState`.
 * **Navegación** entre páginas con React Router y página **404** para rutas inexistentes.
 
@@ -250,10 +250,10 @@ La aplicación queda disponible en `http://localhost:5173`.
 * **JavaScript (`.jsx`) en lugar de TypeScript:** la estructura inicial se pensó con TypeScript, pero se migró a JSX para enfocarse en los conceptos de React que pide el sprint (componentes, props, estado y eventos).
 * **Datos en un archivo `.js` del servidor:** como pide la consigna, los productos viven en un array de objetos en el backend. Más adelante se podrán reemplazar por una base de datos (MongoDB) sin tocar el frontend, porque este solo consume la API.
 * **Rutas modulares con `express.Router`:** cada recurso tiene su archivo de rutas, así `app.js` queda limpio y es fácil sumar recursos nuevos.
-* **Carrito en `App.jsx`:** el estado del carrito vive en el componente más alto que lo necesita y baja por props al Header (contador) y a los productos (botón de agregar).
+* **Carrito en `App.jsx`:** el estado del carrito vive en el componente más alto que lo necesita y baja por props al Navbar (contador) y a los productos (botón de agregar).
 * **Datos de UI en arrays + `.map()`:** los links del Footer y las tarjetas de materiales se definen como arrays de objetos y se renderizan con `.map()`. Agregar un ítem nuevo es sumar un objeto, sin repetir JSX.
 * **Rutas absolutas para imágenes (`/images/...`):** con React Router, una ruta relativa como `images/...` se rompe en URLs anidadas (por ejemplo `/producto/3`). Por eso todas las imágenes usan rutas que empiezan con `/`.
-* **Nombres de archivo sin tildes ni espacios:** se renombraron imágenes como `muebles-de-restauración.jpg` para evitar errores en servidores Linux (el mismo problema de mayúsculas y minúsculas que tuvimos con GitHub Pages en el Sprint 1).
+* **Nombres de archivo sin tildes ni espacios:** los recursos del proyecto usan nombres simples para evitar errores de rutas y diferencias de mayúsculas/minúsculas en servidores Linux.
 * **Se reutiliza el CSS del Sprint 1 y 2:** los componentes usan los mismos nombres de clase (metodología BEM) que la versión HTML, así el sistema de diseño de la marca se mantiene sin reescribir estilos.
 
 ---
@@ -307,7 +307,7 @@ Prácticas de accesibilidad:
 * [x] API REST con `GET /api/productos` y `GET /api/productos/:id`.
 * [x] Middleware de logging, `express.json()`, manejador de 404 y de errores.
 * [x] Frontend en React consumiendo la API con estados de carga y error.
-* [x] Carrito con estado en `App.jsx` y contador en el Header.
+* [x] Carrito con estado en `App.jsx` y contador en el Navbar.
 * [x] Formulario de contacto controlado.
 * [x] README con integrantes, instalación, arquitectura y decisiones.
 

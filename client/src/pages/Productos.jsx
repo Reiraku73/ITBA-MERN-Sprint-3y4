@@ -1,9 +1,9 @@
 import ProductGrid from '../components/products/ProductGrid';
 
-export default function Productos() {
+export default function Productos({ onAgregar }) {
     return (
         <main>
-            <ProductGrid />
+            <ProductGrid onAgregar={onAgregar} />
         </main>
     )
 }

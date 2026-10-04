@@ -1,7 +1,7 @@
 import { useProductos } from '../../hooks/useProductos';
 import ProductCard from './ProductCard';
 
-export default function ProductGrid() {
+export default function ProductGrid({ onAgregar }) {
   const { productos, cargando, error, reintentar } = useProductos();
 
   if (error) {
@@ -32,10 +32,10 @@ export default function ProductGrid() {
       ) : (
         <ul className="productos-listado__grid" id="productos-listado-grid">
           {productos.map((producto) => (
-            <ProductCard 
-              key={producto.id} 
-              producto={producto} 
-              // Aca se debe realizar la logica para el carrito (onAgregar)
+            <ProductCard
+              key={producto.id}
+              producto={producto}
+              onAgregar={onAgregar}
             />
           ))}
         </ul>

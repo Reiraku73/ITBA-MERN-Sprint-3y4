@@ -23,7 +23,7 @@ export default function ProductInfo({ producto, onAgregar, onShowPayments }) {
   const sinStock = tieneStock && producto.stock === 0;
 
   function handleAgregar() {
-    if (!onAgregar) return;
+    if (!onAgregar || sinStock) return;
     onAgregar(producto, cantidad);
     announce(`${producto.nombre} agregado al carrito`);
     setAgregado(true);
@@ -31,7 +31,7 @@ export default function ProductInfo({ producto, onAgregar, onShowPayments }) {
 
   // "Comprar ahora": suma al carrito y va directo al carrito.
   function handleComprarAhora() {
-    if (!onAgregar) return;
+    if (!onAgregar || sinStock) return;
     onAgregar(producto, cantidad);
     navigate('/carrito');
   }

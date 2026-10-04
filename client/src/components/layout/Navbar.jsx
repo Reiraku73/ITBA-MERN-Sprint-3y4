@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import MobileMenu from './MobileMenu';
 
+export default function Navbar({ cantidadCarrito = 0 }) {
+  const [state, setState] = useState(false);
 
-
-export default function Header({ cantidadCarrito = 0 }) {
-  const [state, setState] = useState(false)
   function handleNavigate() {
-    setState(false)
+    setState(false);
   }
 
   return (
@@ -36,7 +34,7 @@ export default function Header({ cantidadCarrito = 0 }) {
           aria-label="Abrir menú de navegación"
           onClick={() => setState((prev) => !prev)}
         >
-          <span aria-hidden="true" >☰</span>
+          <span aria-hidden="true">☰</span>
         </button>
 
         <NavLink to="/cuenta" className="header__icon-link">
@@ -45,7 +43,9 @@ export default function Header({ cantidadCarrito = 0 }) {
 
         <NavLink to="/carrito" className="header__icon-link header__cart">
           <img src="icons/cart.svg" alt="" width="24" height="24" />
-          <span className="cart-count">{cantidadCarrito}</span>
+          <span className="cart-count" aria-label={`${cantidadCarrito} productos en el carrito`}>
+            {cantidadCarrito}
+          </span>
         </NavLink>
       </div>
     </header>
