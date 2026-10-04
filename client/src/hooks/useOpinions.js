@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const API_URL = 'http://localhost:3001/api/opiniones'
 
-export function useOpiniones() {
+export function useOpinions() {
   const [opiniones, setOpiniones] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
