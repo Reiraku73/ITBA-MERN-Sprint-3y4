@@ -1,6 +1,7 @@
 /* ==========================================================================
    Hermanos Jota — Hoja de estilos principal
    Sprint 1 y 2 · Módulo 10 (CSS) — actualizado con el Manual de Marca oficial
+
    Sistema de diseño — según Manual de Marca (Buenos Aires, 2026)
    ------------------------------------------------------------------------
    Paleta oficial:
@@ -9,10 +10,12 @@
      --color-alabastro #F5E6D3  Alabastro Cálido — fondos principales, fotografía
      --color-oro     #D4A437  Vara de Oro — detalles premium, acentos
      --color-rosa    #C47A6D  Rosa Polvoriento — acentos suaves
+
    El manual no define un color de texto de lectura ni un fondo secundario;
    --color-ink, --color-ink-soft, --color-bg-alt y --color-paper son
    extensiones necesarias derivadas de la paleta oficial (tonos nogal más
    oscuros que el Siena, para cumplir contraste de texto AA).
+
    Tipografía oficial:
      Primaria   → "Inter"            cuerpo, UI, aplicaciones digitales
      Secundaria → "Playfair Display"  títulos editoriales, citas, contenido
@@ -21,6 +24,7 @@
      Utilidad   → "IBM Plex Mono"    precios (extensión propia, no está en
                                        el manual — se mantiene por legibilidad
                                        de cifras en una interfaz de compra)
+
    Firma visual: esquina "cola de milano" (dovetail) recortada con clip-path
    en tarjetas de producto/material — guiño a la carpintería, complementa
    la identidad sin contradecirla.
@@ -366,8 +370,8 @@ main > section {
   pointer-events: auto; 
   /* 2. Animación de entrada: Reemplaza a 'transition' porque React destruye y crea el elemento en el DOM cada 5 segundos */
   animation: fade-in var(--slide-duration) ease forwards
-
-
+  
+ 
 }
 
 @keyframes fade-in {
