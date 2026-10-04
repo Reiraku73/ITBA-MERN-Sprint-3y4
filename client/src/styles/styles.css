@@ -581,6 +581,10 @@ main > section {
   margin-top: 0.4rem;
 }
 .newsletter__form .btn { width: 100%; }
+.newsletter__exito {
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+}
 
 /* ==========================================================================
    Listado de productos (productos.html)
