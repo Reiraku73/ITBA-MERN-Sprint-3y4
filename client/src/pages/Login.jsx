@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import FormField from '../components/ui/FormField.jsx'
+import { EMAIL_VALIDO } from '../utils/validators.js'
 
 const FORM_VACIO = { email: '', password: '' }
-const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function Login({ onLogin }) {
   const [form, setForm] = useState(FORM_VACIO)
@@ -47,37 +48,25 @@ function Login({ onLogin }) {
         <h1 className="auth__title">Iniciar sesión</h1>
 
         <form className="auth__form" onSubmit={enviar} noValidate>
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                placeholder=" "
-                value={form.email}
-                onChange={cambiar}
-              />
-              <label htmlFor="email">Email</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.email}</p>
-          </div>
+          <FormField
+            id="email"
+            label="Email"
+            type="email"
+            autoComplete="email"
+            value={form.email}
+            onChange={cambiar}
+            error={errores.email}
+          />
 
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                autoComplete="current-password"
-                placeholder=" "
-                value={form.password}
-                onChange={cambiar}
-              />
-              <label htmlFor="password">Contraseña</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.password}</p>
-          </div>
+          <FormField
+            id="password"
+            label="Contraseña"
+            type="password"
+            autoComplete="current-password"
+            value={form.password}
+            onChange={cambiar}
+            error={errores.password}
+          />
 
           {errores.general && (
             <p className="form-field__error" role="alert">{errores.general}</p>
