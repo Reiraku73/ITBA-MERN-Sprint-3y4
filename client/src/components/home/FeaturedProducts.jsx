@@ -1,38 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import ProductCard from '../products/ProductCard.jsx'
-
-//const URL_PRODUCTOS = 'http://localhost:3000/api/productos'.
-const URL_PRODUCTOS = '/data/productos.json'
+import { useProductos } from '../../hooks/useProductos';
 const CANTIDAD_SKELETONS = 5
 
 // onAgregar de Franco
 function FeaturedProducts({ onAgregar }) {
-  const [productos, setProductos] = useState([])
-  const [cargando, setCargando] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    setCargando(true)
-    setError(null)
-
-    fetch(URL_PRODUCTOS)
-      .then((respuesta) => {
-        if (!respuesta.ok) {
-          throw new Error(`Error al obtener productos (status ${respuesta.status})`)
-        }
-        return respuesta.json()
-      })
-      .then((data) => {
-        setProductos(data.filter((producto) => producto.destacado))
-      })
-      .catch((err) => {
-        setError(err.message)
-      })
-      .finally(() => {
-        setCargando(false)
-      })
-  }, [])
+  const { productos, cargando, error, reintentar } = useProductos()
+  const destacados = productos.filter((producto) => producto.destacado)
 
   return (
     <section className="productos-destacados">
@@ -52,7 +27,7 @@ function FeaturedProducts({ onAgregar }) {
 
         {!cargando &&
           !error &&
-          productos.map((producto) => (
+          destacados.map((producto) => (
             <ProductCard key={producto.id} producto={producto} onAgregar={onAgregar} />
           ))}
       </ul>
