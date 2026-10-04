@@ -14,7 +14,7 @@ import Cuenta from './pages/Cuenta.jsx'
 import { useAuth } from './hooks/useAuth.js'
 
 function App() {
-    const { usuario, registrarUsuario, iniciarSesion, cerrarSesion } = useAuth()
+    const { usuario, registrarUsuario, iniciarSesion, cerrarSesion, actualizarUsuario } = useAuth()
     
     return (
         <BrowserRouter>
@@ -36,7 +36,7 @@ function App() {
                 />
                 <Route
                     path="/cuenta"
-                    element={usuario ? <Cuenta usuario={usuario} onLogout={cerrarSesion} /> : <Navigate to="/login" replace />}
+                    element={usuario ? <Cuenta usuario={usuario} onActualizar={actualizarUsuario} onLogout={cerrarSesion} /> : <Navigate to="/login" replace />}
                 />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
