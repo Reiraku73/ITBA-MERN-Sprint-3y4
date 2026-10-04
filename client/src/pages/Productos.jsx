@@ -1,6 +1,6 @@
 import ProductGrid from '../components/products/ProductGrid';
 
-export function Productos() {
+export default function Productos() {
     return (
         <main>
             <ProductGrid />
