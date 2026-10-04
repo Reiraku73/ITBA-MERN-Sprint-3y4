@@ -172,6 +172,7 @@ input:focus-visible {
 }
 .btn--secondary:hover { background: var(--color-ink); color: var(--color-paper); }
 .btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
 /* Firma: esquina "cola de milano" — usada en tarjetas de producto y material */
 .producto-card__media,
@@ -1669,24 +1670,6 @@ main > section {
 .mini-card__name { font-size: 0.9rem; font-weight: 400; }
 .mini-card__price { margin: 0.55rem 0 0.2rem; font-size: 1.2rem; }
 .mini-card__installments { font-size: 0.72rem; color: var(--pdp-green); }
-.mini-card__heart {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  background: var(--pdp-card);
-  color: var(--pdp-ink);
-  font-size: 1.05rem;
-  box-shadow: 0 1px 4px rgba(46, 32, 21, 0.12);
-  transition: color 0.2s, transform 0.15s;
-}
-.mini-card__heart:hover { color: var(--color-siena); transform: scale(1.06); }
-.mini-card__heart[aria-pressed='true'] { color: var(--color-siena); }
 
 /* ---------- Secciones de contenido ---------- */
 .pdp-section { padding: var(--space-4) 0; border-top: 1px solid var(--pdp-line); }
@@ -1828,8 +1811,7 @@ main > section {
 }
 @media (prefers-reduced-motion: reduce) {
   .producto-gallery__main img,
-  .mini-card,
-  .mini-card__heart { animation: none; transition: none; }
+  .mini-card { animation: none; transition: none; }
 }
 
 /* Modal de medios de pago */

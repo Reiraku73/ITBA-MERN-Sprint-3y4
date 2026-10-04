@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 // Pantalla provisoria para las secciones que todavía no tienen página
-// (Contacto, Carrito, Cuenta): así el menú no cae en el 404. Cuando cada
+// (Contacto, Cuenta): así el menú no cae en el 404. Cuando cada
 // página esté hecha, se cambia el elemento de su <Route> en App.jsx y este
 // archivo se puede borrar.
 export default function EnConstruccion({ titulo }) {
