@@ -6,20 +6,7 @@ import MobileMenu from './MobileMenu';
 
 
 export default function Header({ cantidadCarrito = 0 }) {
-  const [busqueda, setBusqueda] = useState("")
   const [state, setState] = useState(false)
-
-  const navigate = useNavigate();
-
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    const busquedaTemplate = `/productos?q=${busqueda}`
-    navigate(busquedaTemplate)
-
-    setBusqueda("")
-  }
-
   function handleNavigate() {
     setState(false)
   }
@@ -39,20 +26,6 @@ export default function Header({ cantidadCarrito = 0 }) {
       </div>
 
       <MobileMenu isOpen={state} onClose={handleNavigate} />
-
-      <form className="header__search" role="search" onSubmit={handleSubmit}>
-        <label htmlFor="search-input" className="visually-hidden">Buscar productos</label>
-        <input
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          type="search"
-          id="search-input"
-          placeholder="Buscar muebles..."
-        />
-        <button type="submit">
-          <img src="icons/search.svg" alt="" width="20" height="20" />
-        </button>
-      </form>
 
       <div className="header__actions">
         <button
