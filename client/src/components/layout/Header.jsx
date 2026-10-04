@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import MobileMenu from './MobileMenu';
+import CartIcon from '../cart/CartIcon';
 
-
-
-export default function Header({ cantidadCarrito = 0 }) {
-  const [state, setState] = useState(false)
+export default function Header() {
+  const [state, setState] = useState(false);
+  
   function handleNavigate() {
-    setState(false)
+    setState(false);
   }
 
   return (
@@ -43,10 +42,7 @@ export default function Header({ cantidadCarrito = 0 }) {
           <img src="/icons/user.svg" alt="" width="24" height="24" />
         </NavLink>
 
-        <NavLink to="/carrito" className="header__icon-link header__cart">
-          <img src="/icons/cart.svg" alt="" width="24" height="24" />
-          <span className="cart-count">{cantidadCarrito}</span>
-        </NavLink>
+        <CartIcon />
       </div>
     </header>
   );

@@ -56,6 +56,7 @@ function App() {
             <BrowserRouter>
                 <ScrollToTop />
                 <Header />
+                {/* Región para anuncios accesibles (ej. "Producto agregado al carrito"). Los anuncios se escriben con utils/announce.js. */}
                 <div id="live-region" className="visually-hidden" role="status" aria-live="polite" />
                 <AppRoutes />
                 <Footer />

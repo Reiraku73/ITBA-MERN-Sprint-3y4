@@ -10,7 +10,7 @@ import ProductGrid from '../components/products/ProductGrid';
 const normalizar = (texto) => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
 // Listado: /productos  (el buscador del header manda /productos?q=texto)
-// onAgregar(producto) lo pasa App cuando exista el carrito.
+// onAgregar(producto) lo pasa App (viene de useCart).
 export default function Productos({ onAgregar }) {
   const [searchParams] = useSearchParams();
   const q = (searchParams.get('q') ?? '').trim();

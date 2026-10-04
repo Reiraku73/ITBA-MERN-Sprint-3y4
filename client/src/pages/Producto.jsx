@@ -16,7 +16,7 @@ import ProductSpecs from '../components/products/ProductSpecs';
 import ProductDescription from '../components/products/ProductDescription';
 
 // Ficha de producto: /productos/:id
-// onAgregar(producto, cantidad) lo pasa App cuando exista el carrito.
+// onAgregar(producto, cantidad) lo pasa App (viene de useCart).
 export default function Producto({ onAgregar }) {
   const { id = '' } = useParams();
   const {
