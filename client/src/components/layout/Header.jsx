@@ -50,7 +50,11 @@ export default function Header({ cantidadCarrito = 0 }) {
           placeholder="Buscar muebles..."
         />
         <button type="submit">
+<<<<<<< HEAD
           <img src="images/icons/search.svg" alt="" width="20" height="20" />
+=======
+          <img src="icons/search.svg" alt="" width="20" height="20" />
+>>>>>>> main
         </button>
       </form>
 
@@ -67,11 +71,19 @@ export default function Header({ cantidadCarrito = 0 }) {
         </button>
 
         <NavLink to="/cuenta" className="header__icon-link">
+<<<<<<< HEAD
           <img src="images/icons/user.svg" alt="" width="24" height="24" />
         </NavLink>
 
         <NavLink to="/carrito" className="header__icon-link header__cart">
           <img src="images/icons/cart.svg" alt="" width="24" height="24" />
+=======
+          <img src="icons/user.svg" alt="" width="24" height="24" />
+        </NavLink>
+
+        <NavLink to="/carrito" className="header__icon-link header__cart">
+          <img src="icons/cart.svg" alt="" width="24" height="24" />
+>>>>>>> main
           <span className="cart-count">{cantidadCarrito}</span>
         </NavLink>
       </div>
