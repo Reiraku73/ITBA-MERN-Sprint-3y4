@@ -9,11 +9,18 @@ function ProductCard({ producto, onAgregar }) {
   return (
     <li>
       <article className="producto-card">
-        <Link to={`/productos/${producto.id}`} className="producto-card__link">
+        <Link to={`/producto/${producto.id}`} className="producto-card__link">
           <figure className="producto-card__media">
-            <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
+            <img 
+              src={producto.imagen} 
+              alt={`${producto.nombre}, ${producto.categoria.toLowerCase()}`} 
+              width="600" 
+              height="600" 
+              loading="lazy" 
+            />  
           </figure>
           <div className="producto-card__info">
+            <p className="producto-card__categoria">{producto.categoria}</p>
             <h3>{producto.nombre}</h3>
             <p className="producto-card__price">{formatearPrecio(producto.precio)}</p>
           </div>

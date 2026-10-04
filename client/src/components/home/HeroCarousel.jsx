@@ -1,53 +1,29 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useProductos } from '../../hooks/useProductos';
 
 export default function HeroCarousel() {
-  const [slidesArray, setSlidesArray] = useState([])
-  const [slide, setSlide] = useState(0)
-  const [cargando, setCargando] = useState(true)
-  const [error, setError] = useState(null)
+  const { productos: slidesArray, cargando, error, reintentar } = useProductos();
+  const [slide, setSlide] = useState(0);
 
-  const SLIDE_DURATION = 7000
+  const SLIDE_DURATION = 7000;
 
-  const route = 'http://localhost:3001/api/productos'
-
-  async function slideFetching() {
-    try {
-      const res = await fetch(route)
-
-      if (!res.ok) throw new Error('Error en la respuesta')
-
-      const data = await res.json()
-
-      setSlidesArray(data)
-      setCargando(false)
-    }
-    catch (err) {
-      setCargando(false)
-      setError(err.message)
-      console.error('Fallo en la conversion o red', err)
-    }
-  }
 
   useEffect(() => {
-    slideFetching()
-  }, [])
+    const matches = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  useEffect(() => {
-    const matches = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-    if (matches) return
-
-    if (slidesArray.length === 0) return
+    if (matches) return;
+    if (!slidesArray || slidesArray.length === 0) return;
 
     const interval = setInterval(() => {
-      setSlide((prev) => (prev + 1) % slidesArray.length)
-    }, SLIDE_DURATION)
+      setSlide((prev) => (prev + 1) % slidesArray.length);
+    }, SLIDE_DURATION);
 
     return () => {
-      clearInterval(interval)
-    }
-  }, [slidesArray.length])
+      clearInterval(interval);
+    };
+  }, [slidesArray?.length]);
+
   return (
     <>
       <section className="hero">
@@ -65,14 +41,17 @@ export default function HeroCarousel() {
         <div className="hero__media">
           {error ? (
             <div className="hero__carousel-error" style={{ padding: '2rem', textAlign: 'center', background: '#ffebee', color: '#c62828', borderRadius: '8px' }}>
-              <p>⚠️Ha habido un error: {error}</p>
-              <button onClick={slideFetching} className="btn btn--secondary" style={{ marginTop: '1rem' }}>Reintentar</button>
-            </div>) : cargando ? (
-              <div className="hero__carousel-loading">Cargando destacados...</div>
-            ) : (
+              <p>⚠️ Ha habido un error: {error}</p>
+              <button onClick={reintentar} className="btn btn--secondary" style={{ marginTop: '1rem' }}>
+                Reintentar
+              </button>
+            </div>
+          ) : cargando ? (
+            <div className="hero__carousel-loading">Cargando destacados...</div>
+          ) : (
             <div className="hero__carousel" id="hero-carousel">
               {(() => {
-                const slideActual = slidesArray[slide]
+                const slideActual = slidesArray[slide];
 
                 return (
                   <Link
@@ -87,7 +66,7 @@ export default function HeroCarousel() {
                       alt={`${slideActual.nombre}, pieza destacada de Hermanos Jota`}
                     />
                   </Link>
-                )
+                );
               })()}
             </div>
           )}
