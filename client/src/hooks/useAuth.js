@@ -53,5 +53,32 @@ export function useAuth() {
     setUsuario(null)
   }
 
-  return { usuario, registrarUsuario, iniciarSesion, cerrarSesion }
+  function actualizarUsuario({ nombre, apellido, telefono, passwordActual, passwordNueva }) {
+    const actual = usuarios.find((u) => u.id === usuario.id)
+
+    if (!actual) return 'No se encontró el usuario.'
+
+    // Solo se pide la contraseña actual si quieren cambiarla.
+    if (passwordNueva && passwordActual !== actual.password) {
+      return 'La contraseña actual es incorrecta.'
+    }
+
+    const actualizado = {
+      ...actual,
+      nombre,
+      apellido,
+      telefono,
+      password: passwordNueva || actual.password,
+    }
+
+    // map devuelve un array NUEVO, sin mutar el anterior.
+    setUsuarios((prev) => prev.map((u) => (u.id === actual.id ? actualizado : u)))
+
+    // La sesión se guarda sin contraseña.
+    const { password: _, ...usuarioPublico } = actualizado
+    setUsuario(usuarioPublico)
+    return null
+  }
+
+  return { usuario, registrarUsuario, iniciarSesion, cerrarSesion, actualizarUsuario }
 }
