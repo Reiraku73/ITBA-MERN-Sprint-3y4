@@ -1,6 +1,6 @@
 import { useState } from 'react'
-
-const TELEFONO_VALIDO = /^[0-9+\s()-]{6,}$/
+import FormField from '../components/ui/FormField.jsx'
+import { TELEFONO_VALIDO } from '../utils/validators.js'
 
 function formDesdeUsuario(usuario) {
   return {
@@ -120,125 +120,82 @@ function Cuenta({ usuario, onActualizar, onLogout }) {
 
       <form className="cuenta__form" onSubmit={enviar} noValidate>
         <div className="cuenta__row">
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                autoComplete="given-name"
-                placeholder=" "
-                readOnly={!editando}
-                value={form.nombre}
-                onChange={cambiar}
-              />
-              <label htmlFor="nombre">Nombre</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.nombre}</p>
-          </div>
-
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="text"
-                id="apellido"
-                name="apellido"
-                autoComplete="family-name"
-                placeholder=" "
-                readOnly={!editando}
-                value={form.apellido}
-                onChange={cambiar}
-              />
-              <label htmlFor="apellido">Apellido</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.apellido}</p>
-          </div>
+          <FormField
+            id="nombre"
+            label="Nombre"
+            type="text"
+            autoComplete="given-name"
+            readOnly={!editando}
+            value={form.nombre}
+            onChange={cambiar}
+            error={errores.nombre}
+          />
+          <FormField
+            id="apellido"
+            label="Apellido"
+            type="text"
+            autoComplete="family-name"
+            readOnly={!editando}
+            value={form.apellido}
+            onChange={cambiar}
+            error={errores.apellido}
+          />
         </div>
 
-        <div className="form-field form-field--float">
-          <div className="form-field__control">
-            <input
-              type="email"
-              id="email"
-              autoComplete="email"
-              placeholder=" "
-              readOnly
-              disabled
-              value={usuario.email}
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-        </div>
+        <FormField
+          id="email"
+          label="Email"
+          type="email"
+          autoComplete="email"
+          readOnly
+          disabled
+          value={usuario.email}
+        />
 
-        <div className="form-field form-field--float">
-          <div className="form-field__control">
-            <input
-              type="tel"
-              id="telefono"
-              name="telefono"
-              autoComplete="tel"
-              placeholder=" "
-              readOnly={!editando}
-              value={form.telefono}
-              onChange={cambiar}
-            />
-            <label htmlFor="telefono">Teléfono</label>
-          </div>
-          <p className="form-field__error" role="alert">{errores.telefono}</p>
-        </div>
+        <FormField
+          id="telefono"
+          label="Teléfono"
+          type="tel"
+          autoComplete="tel"
+          readOnly={!editando}
+          value={form.telefono}
+          onChange={cambiar}
+          error={errores.telefono}
+        />
 
         {editando && (
           <fieldset className="cuenta__password">
             <legend>Cambiar contraseña (opcional)</legend>
 
-            <div className="form-field form-field--float">
-              <div className="form-field__control">
-                <input
-                  type="password"
-                  id="passwordActual"
-                  name="passwordActual"
-                  autoComplete="current-password"
-                  placeholder=" "
-                  value={form.passwordActual}
-                  onChange={cambiar}
-                />
-                <label htmlFor="passwordActual">Contraseña actual</label>
-              </div>
-              <p className="form-field__error" role="alert">{errores.passwordActual}</p>
-            </div>
+            <FormField
+              id="passwordActual"
+              label="Contraseña actual"
+              type="password"
+              autoComplete="current-password"
+              value={form.passwordActual}
+              onChange={cambiar}
+              error={errores.passwordActual}
+            />
 
             <div className="cuenta__row">
-              <div className="form-field form-field--float">
-                <div className="form-field__control">
-                  <input
-                    type="password"
-                    id="passwordNueva"
-                    name="passwordNueva"
-                    autoComplete="new-password"
-                    placeholder=" "
-                    value={form.passwordNueva}
-                    onChange={cambiar}
-                  />
-                  <label htmlFor="passwordNueva">Nueva contraseña</label>
-                </div>
-                <p className="form-field__error" role="alert">{errores.passwordNueva}</p>
-              </div>
-
-              <div className="form-field form-field--float">
-                <div className="form-field__control">
-                  <input
-                    type="password"
-                    id="confirmacion"
-                    name="confirmacion"
-                    autoComplete="new-password"
-                    placeholder=" "
-                    value={form.confirmacion}
-                    onChange={cambiar}
-                  />
-                  <label htmlFor="confirmacion">Repetir nueva contraseña</label>
-                </div>
-                <p className="form-field__error" role="alert">{errores.confirmacion}</p>
-              </div>
+              <FormField
+                id="passwordNueva"
+                label="Nueva contraseña"
+                type="password"
+                autoComplete="new-password"
+                value={form.passwordNueva}
+                onChange={cambiar}
+                error={errores.passwordNueva}
+              />
+              <FormField
+                id="confirmacion"
+                label="Repetir nueva contraseña"
+                type="password"
+                autoComplete="new-password"
+                value={form.confirmacion}
+                onChange={cambiar}
+                error={errores.confirmacion}
+              />
             </div>
           </fieldset>
         )}

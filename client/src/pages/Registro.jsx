@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import FormField from '../components/ui/FormField.jsx'
+import { EMAIL_VALIDO, TELEFONO_VALIDO } from '../utils/validators.js'
 
 const FORM_VACIO = {
   nombre: '',
@@ -9,9 +11,6 @@ const FORM_VACIO = {
   password: '',
   confirmacion: '',
 }
-
-const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const TELEFONO_VALIDO = /^[0-9+\s()-]{6,}$/
 
 function Register({ onRegistrar }) {
   const [form, setForm] = useState(FORM_VACIO)
@@ -39,7 +38,6 @@ function Register({ onRegistrar }) {
       nuevosErrores.email = 'Ese email no parece válido (ej: nombre@mail.com).'
     }
 
-    // El teléfono es opcional: solo lo revisamos si escribieron algo.
     if (datos.telefono.trim() && !TELEFONO_VALIDO.test(datos.telefono)) {
       nuevosErrores.telefono = 'Ese teléfono no parece válido.'
     }
@@ -64,12 +62,10 @@ function Register({ onRegistrar }) {
     setErrores(erroresEncontrados)
     if (Object.keys(erroresEncontrados).length > 0) return
 
-    // La confirmación solo sirve para validar, no se guarda.
     const { confirmacion, ...datos } = form
     const mensaje = onRegistrar(datos)
 
     if (mensaje) {
-      // Por ahora el único error posible es que el email ya exista.
       setErrores({ email: mensaje })
       return
     }
@@ -84,102 +80,65 @@ function Register({ onRegistrar }) {
 
         <form className="auth__form" onSubmit={enviar} noValidate>
           <div className="cuenta__row">
-            <div className="form-field form-field--float">
-              <div className="form-field__control">
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  autoComplete="given-name"
-                  placeholder=" "
-                  value={form.nombre}
-                  onChange={cambiar}
-                />
-                <label htmlFor="nombre">Nombre</label>
-              </div>
-              <p className="form-field__error" role="alert">{errores.nombre}</p>
-            </div>
-
-            <div className="form-field form-field--float">
-              <div className="form-field__control">
-                <input
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  autoComplete="family-name"
-                  placeholder=" "
-                  value={form.apellido}
-                  onChange={cambiar}
-                />
-                <label htmlFor="apellido">Apellido</label>
-              </div>
-              <p className="form-field__error" role="alert">{errores.apellido}</p>
-            </div>
+            <FormField
+              id="nombre"
+              label="Nombre"
+              type="text"
+              autoComplete="given-name"
+              value={form.nombre}
+              onChange={cambiar}
+              error={errores.nombre}
+            />
+            <FormField
+              id="apellido"
+              label="Apellido"
+              type="text"
+              autoComplete="family-name"
+              value={form.apellido}
+              onChange={cambiar}
+              error={errores.apellido}
+            />
           </div>
 
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                placeholder=" "
-                value={form.email}
-                onChange={cambiar}
-              />
-              <label htmlFor="email">Email</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.email}</p>
-          </div>
+          <FormField
+            id="email"
+            label="Email"
+            type="email"
+            autoComplete="email"
+            value={form.email}
+            onChange={cambiar}
+            error={errores.email}
+          />
 
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="tel"
-                id="telefono"
-                name="telefono"
-                autoComplete="tel"
-                placeholder=" "
-                value={form.telefono}
-                onChange={cambiar}
-              />
-              <label htmlFor="telefono">Teléfono (opcional)</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.telefono}</p>
-          </div>
+          <FormField
+            id="telefono"
+            label="Teléfono (opcional)"
+            type="tel"
+            autoComplete="tel"
+            value={form.telefono}
+            onChange={cambiar}
+            error={errores.telefono}
+          />
 
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                autoComplete="new-password"
-                placeholder=" "
-                value={form.password}
-                onChange={cambiar}
-              />
-              <label htmlFor="password">Contraseña</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.password}</p>
-          </div>
+          <FormField
+            id="password"
+            label="Contraseña"
+            type="password"
+            autoComplete="new-password"
+            value={form.password}
+            onChange={cambiar}
+            error={errores.password}
+          />
 
-          <div className="form-field form-field--float">
-            <div className="form-field__control">
-              <input
-                type="password"
-                id="confirmacion"
-                name="confirmacion"
-                autoComplete="new-password"
-                placeholder=" "
-                value={form.confirmacion}
-                onChange={cambiar}
-              />
-              <label htmlFor="confirmacion">Repetir contraseña</label>
-            </div>
-            <p className="form-field__error" role="alert">{errores.confirmacion}</p>
-          </div>
+          <FormField
+            id="confirmacion"
+            label="Repetir contraseña"
+            type="password"
+            autoComplete="new-password"
+            value={form.confirmacion}
+            onChange={cambiar}
+            error={errores.confirmacion}
+          />
 
           <button type="submit" className="btn btn--primary auth__submit">
             Crear cuenta

@@ -1,24 +1,48 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { EMAIL_VALIDO } from '../utils/validators.js'
+
+const FORM_VACIO = { nombre: '', email: '', mensaje: '' }
 
 function Contacto() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    mensaje: '',
-  });
-  const [enviado, setEnviado] = useState(false);
+  const [form, setForm] = useState(FORM_VACIO)
+  const [errores, setErrores] = useState({})
+  const [enviado, setEnviado] = useState(false)
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  function cambiar(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: conectar con el backend (services/api) cuando esté el endpoint de contacto
-    console.log('Formulario enviado:', formData);
-    setEnviado(true);
-  };
+  function validar(datos) {
+    const nuevosErrores = {}
+
+    if (!datos.nombre.trim()) {
+      nuevosErrores.nombre = 'Ingresá tu nombre.'
+    }
+
+    if (!datos.email.trim()) {
+      nuevosErrores.email = 'Ingresá tu email.'
+    } else if (!EMAIL_VALIDO.test(datos.email)) {
+      nuevosErrores.email = 'Ese email no parece válido (ej: nombre@mail.com).'
+    }
+
+    if (datos.mensaje.trim().length < 10) {
+      nuevosErrores.mensaje = 'Contanos un poco más: al menos 10 caracteres.'
+    }
+
+    return nuevosErrores
+  }
+
+  function enviar(e) {
+    e.preventDefault()
+
+    const erroresEncontrados = validar(form)
+    setErrores(erroresEncontrados)
+    if (Object.keys(erroresEncontrados).length > 0) return
+
+    console.log('Formulario enviado:', form)
+    setForm(FORM_VACIO)
+    setEnviado(true)
+  }
 
   return (
     <section className="contacto">
@@ -66,7 +90,7 @@ function Contacto() {
         ) : (
           <>
             <h2 className="contacto__form-title">Envianos tu consulta</h2>
-            <form className="contacto__form" onSubmit={handleSubmit}>
+            <form className="contacto__form" onSubmit={enviar} noValidate>
               <div className="form-field">
                 <div className="form-field__control">
                   <input
@@ -74,13 +98,12 @@ function Contacto() {
                     id="nombre"
                     name="nombre"
                     placeholder=" "
-                    required
-                    value={formData.nombre}
-                    onChange={handleChange}
+                    value={form.nombre}
+                    onChange={cambiar}
                   />
                   <label htmlFor="nombre">Nombre</label>
                 </div>
-                <p className="form-field__error"></p>
+                <p className="form-field__error" role="alert">{errores.nombre}</p>
               </div>
 
               <div className="form-field">
@@ -90,13 +113,12 @@ function Contacto() {
                     id="email"
                     name="email"
                     placeholder=" "
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={form.email}
+                    onChange={cambiar}
                   />
                   <label htmlFor="email">Correo electrónico</label>
                 </div>
-                <p className="form-field__error"></p>
+                <p className="form-field__error" role="alert">{errores.email}</p>
               </div>
 
               <div className="form-field">
@@ -106,13 +128,12 @@ function Contacto() {
                     name="mensaje"
                     rows="4"
                     placeholder=" "
-                    required
-                    value={formData.mensaje}
-                    onChange={handleChange}
+                    value={form.mensaje}
+                    onChange={cambiar}
                   ></textarea>
                   <label htmlFor="mensaje">Mensaje</label>
                 </div>
-                <p className="form-field__error"></p>
+                <p className="form-field__error" role="alert">{errores.mensaje}</p>
               </div>
 
               <button type="submit" className="btn btn--primary contacto__submit">
@@ -124,7 +145,7 @@ function Contacto() {
       </div>
 
     </section>
-  );
+  )
 }
 
-export default Contacto;
+export default Contacto
