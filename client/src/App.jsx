@@ -15,6 +15,7 @@ function App() {
                 <Route path="/productos" element={<Productos/>}/>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 }
