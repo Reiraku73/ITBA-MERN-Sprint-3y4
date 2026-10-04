@@ -1,4 +1,4 @@
-[
+export const productos = [
     {
         "id": "1",
         "nombre": "Aparador Uspallata",
@@ -160,7 +160,6 @@
         "categoria": "Dormitorio",
         "precio": 78000,
         "imagen": "/images/productos/mesa-de-noche-aconcagua.webp",
-        "destacado": false,
         "descripcion": "Mesa de noche con cajón oculto y repisa inferior en roble certificado FSC®. Su diseño limpio y funcional permite convivir con diferentes estilos de dormitorio, ofreciendo almacenamiento discreto y elegante para objetos personales.",
         "specs": [
             {
