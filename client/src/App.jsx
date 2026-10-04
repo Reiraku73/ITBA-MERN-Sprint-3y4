@@ -7,10 +7,12 @@ import {Productos} from "./pages/Productos.jsx"
 import Contacto from "./pages/Contacto.jsx"
 import Terminos from "./pages/Terminos.jsx"
 import Privacidad from "./pages/Privacidad.jsx"
+import ScrollToTop from './components/layout/ScrollToTop.jsx';
 
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Header />
             <Routes>
                 <Route path="/" element={<Home/>}/>
