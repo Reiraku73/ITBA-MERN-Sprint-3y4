@@ -142,7 +142,6 @@ function Cuenta({ usuario, onActualizar, onLogout }) {
           />
         </div>
 
-        {/* El email no se puede editar: es lo que identifica al usuario. */}
         <FormField
           id="email"
           label="Email"

@@ -38,7 +38,6 @@ function Register({ onRegistrar }) {
       nuevosErrores.email = 'Ese email no parece válido (ej: nombre@mail.com).'
     }
 
-    // El teléfono es opcional: solo lo revisamos si escribieron algo.
     if (datos.telefono.trim() && !TELEFONO_VALIDO.test(datos.telefono)) {
       nuevosErrores.telefono = 'Ese teléfono no parece válido.'
     }
@@ -63,12 +62,10 @@ function Register({ onRegistrar }) {
     setErrores(erroresEncontrados)
     if (Object.keys(erroresEncontrados).length > 0) return
 
-    // La confirmación solo sirve para validar, no se guarda.
     const { confirmacion, ...datos } = form
     const mensaje = onRegistrar(datos)
 
     if (mensaje) {
-      // Por ahora el único error posible es que el email ya exista.
       setErrores({ email: mensaje })
       return
     }

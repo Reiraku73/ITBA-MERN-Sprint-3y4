@@ -39,7 +39,6 @@ function Contacto() {
     setErrores(erroresEncontrados)
     if (Object.keys(erroresEncontrados).length > 0) return
 
-    // TODO: conectar con el backend (services/api) cuando esté el endpoint de contacto
     console.log('Formulario enviado:', form)
     setForm(FORM_VACIO)
     setEnviado(true)
