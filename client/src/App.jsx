@@ -12,6 +12,7 @@ import Login from './pages/Login.jsx'
 import Register from './pages/Registro.jsx'
 import Cuenta from './pages/Cuenta.jsx'
 import { useAuth } from './hooks/useAuth.js'
+import CambiosDevoluciones from './pages/CambiosDevoluciones.jsx';
 
 function App() {
     const { usuario, registrarUsuario, iniciarSesion, cerrarSesion, actualizarUsuario } = useAuth()
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/terminos" element={<Terminos/>}/>
                 <Route path="/privacidad" element={<Privacidad/>}/> 
                 <Route path="/productos" element={<Productos/>}/>
+                <Route path="/cambios-devoluciones" element={<CambiosDevoluciones/>}/>
                 <Route
                     path="/login"
                     element={usuario ? <Navigate to="/cuenta" replace /> : <Login onLogin={iniciarSesion} />}
