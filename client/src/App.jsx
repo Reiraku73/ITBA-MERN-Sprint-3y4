@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Navbar from './components/layout/Navbar.jsx';
+import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import ErrorBoundary from './components/ui/ErrorBoundary.jsx';
@@ -157,7 +157,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Navbar cantidadCarrito={cart.itemCount} />
+      <Header cantidadCarrito={cart.itemCount} />
       <div id="live-region" className="visually-hidden" role="status" aria-live="polite" />
       <AppRoutes cart={cart} />
       <Footer />

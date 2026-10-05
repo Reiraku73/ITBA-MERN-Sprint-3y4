@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import MobileMenu from './MobileMenu';
 
-export default function Navbar({ cantidadCarrito = 0 }) {
+export default function Header({ cantidadCarrito = 0 }) {
   const [state, setState] = useState(false);
 
   function handleNavigate() {
