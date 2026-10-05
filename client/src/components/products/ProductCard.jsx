@@ -4,7 +4,6 @@ function formatearPrecio(valor) {
   return '$' + valor.toLocaleString('es-AR')
 }
 
-// onAgregar de Franco creo
 function ProductCard({ producto, onAgregar }) {
   return (
     <li>
@@ -28,7 +27,7 @@ function ProductCard({ producto, onAgregar }) {
         <button
           type="button"
           className="btn btn--secondary producto-card__cta"
-          onClick={() => onAgregar?.(producto)}
+          onClick={() => onAgregar(producto)}
         >
           Agregar al carrito
         </button>
